@@ -20,7 +20,7 @@ namespace IncludeFullJson.Tests
             Dictionary<object, JToken> data = new Dictionary<object, JToken>();
             JsonSerializerSettings s = new JsonSerializerSettings()
             {
-                Converters = {new RecursiveSavingConverter<Person>(data)}
+                Converters = {new RecursiveTrackerConverter<Person>(data)}
             };
             var f = JsonConvert.DeserializeObject<Family>(family, s);
             Assert.NotNull(data[f.Dad]);

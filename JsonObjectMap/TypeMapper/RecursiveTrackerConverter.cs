@@ -9,9 +9,9 @@ namespace IncludeFullJson
 
 
 
-    public class RecursiveSavingConverter<T> : JsonConverter
+    public class RecursiveTrackerConverter<T> : JsonConverter
     {
-        public RecursiveSavingConverter(Dictionary<object, JToken> data)
+        public RecursiveTrackerConverter(Dictionary<object, JToken> data)
         {
             this.Data = data;
         }

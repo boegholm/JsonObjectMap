@@ -30,14 +30,14 @@ namespace IncludeFullJson
                     }
                 }
             };
-            var serialized = JsonConvert.SerializeObject(res, Formatting.Indented);
+            var serializedResponse = JsonConvert.SerializeObject(res, Formatting.Indented);
 
             JsonSerializerSettings settings = new JsonSerializerSettings();
             JsonMapper map = JsonMapper.Builder(settings)
-                .Tracking<PartialMovie>()
-                .Tracking<PartialActor>()
+                .Tracking<Movie>()
+                .Tracking<Actor>()
                 ;
-            var resp = JsonConvert.DeserializeObject<PartialResponse>(serialized, map.Settings);
+            var resp = JsonConvert.DeserializeObject<Response>(serializedResponse, map.Settings);
 
             Console.Write(map[resp.Movies[0].Cast[0]].ToString());
         }

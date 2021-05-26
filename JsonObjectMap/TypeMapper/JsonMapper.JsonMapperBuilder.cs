@@ -17,12 +17,12 @@ namespace IncludeFullJson.TypeMapper
             }
             public JsonMapperBuilder Tracking<T>() where T : class, new()
             {
-                typeMappers.Add(new FlatSavingConverter<T>(typeMap));
+                typeMappers.Add(new FlatTrackerConverter<T>(typeMap));
                 return this;
             }
             public JsonMapperBuilder TrackingRecursively<T>() where T:class, new()
             {
-                typeMappers.Add(new FlatSavingConverter<T>(typeMap));
+                typeMappers.Add(new RecursiveTrackerConverter<T>(typeMap));
                 return this;
             }
             private JsonSerializerSettings Settings { get; }

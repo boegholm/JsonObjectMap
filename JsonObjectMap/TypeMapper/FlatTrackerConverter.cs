@@ -6,9 +6,9 @@ using System.IO;
 
 namespace IncludeFullJson.TypeMapper
 {
-    public class FlatSavingConverter<T> : JsonConverter, IJsonTypeMapper
+    public class FlatTrackerConverter<T> : JsonConverter
     {
-        public FlatSavingConverter(Dictionary<object, JToken> typeMap)
+        public FlatTrackerConverter(Dictionary<object, JToken> typeMap)
         {
             this.TypeMap = typeMap;
         }
