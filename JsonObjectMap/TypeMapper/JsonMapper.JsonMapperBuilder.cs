@@ -20,7 +20,7 @@ namespace IncludeFullJson.TypeMapper
                 typeMappers.Add(new FlatTrackerConverter<T>(typeMap));
                 return this;
             }
-            public JsonMapperBuilder TrackingRecursively<T>() where T:class, new()
+            public JsonMapperBuilder TrackingRecursive<T>() where T:class, new()
             {
                 typeMappers.Add(new RecursiveTrackerConverter<T>(typeMap));
                 return this;
@@ -28,12 +28,8 @@ namespace IncludeFullJson.TypeMapper
             private JsonSerializerSettings Settings { get; }
             public JsonMapper Build()
             {
-                List<JsonConverter> nl = new List<JsonConverter>(Settings.Converters);
-                foreach (var mapper in typeMappers)
-                {
-                    nl.Insert(0, mapper);
-                }
-                Settings.Converters = nl;
+                for(int i=0;i < typeMappers.Count; i++)
+                    Settings.Converters.Insert(i, typeMappers[i]);
                 return new JsonMapper(Settings, typeMap);
             }
         }

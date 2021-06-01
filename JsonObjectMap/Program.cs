@@ -36,10 +36,15 @@ namespace IncludeFullJson
             JsonMapper map = JsonMapper.Builder(settings)
                 .Tracking<Movie>()
                 .Tracking<Actor>()
+                .Build()
                 ;
             var resp = JsonConvert.DeserializeObject<Response>(serializedResponse, map.Settings);
+            Movie terminator = resp.Movies[0];
+            Actor arnold = terminator.Cast[0];
+            Actor linda = terminator.Cast[1];
+            Console.WriteLine(map[arnold]);
+            Console.WriteLine(map[linda]);
 
-            Console.Write(map[resp.Movies[0].Cast[0]].ToString());
         }
     }
 }
